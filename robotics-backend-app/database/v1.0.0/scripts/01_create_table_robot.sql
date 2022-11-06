@@ -5,7 +5,7 @@
 DROP TABLE IF EXISTS `robot`;
 
 CREATE TABLE `robot` (
-   id integer NOT NULL,
+   id integer AUTO_INCREMENT PRIMARY KEY,
    name varchar(50)  NOT NULL,
    build_at date NOT NULL,
    updated_at date NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE `robot` (
    is_sound_sensing tinyint DEFAULT 0,
    is_temperature_sensing tinyint DEFAULT 0,
    is_pressure_sensing tinyint DEFAULT 0,
-   is_mobility_degree_of_freedom tinyint DEFAULT 0,
-   CONSTRAINT robot_pk PRIMARY KEY (id)
+   is_mobility_degree_of_freedom tinyint DEFAULT 0
 ) ;
+
 -- End of file.

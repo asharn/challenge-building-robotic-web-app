@@ -65,7 +65,7 @@ public class RobotServiceImpl implements RobotService {
             RobotDto robotDto = new RobotDto();
             robotDto.setName(robotRequest.getName());
             robotDto.setColor(robotRequest.getColor());
-            robotDto.setMass(robotDto.getMass());
+            robotDto.setMass(robotRequest.getMass());
             robotDto.setBuildAt(new Date());
             robotDto.setUpdatedAt(new Date());
             robotDto.setIsLightSensing(robotRequest.getIsLightSensing());
