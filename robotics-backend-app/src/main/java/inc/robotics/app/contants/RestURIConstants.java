@@ -11,8 +11,6 @@ package inc.robotics.app.contants;
 public class RestURIConstants {
     public static final String API_VERSION = "/v1";
     public static final String ROBOT = API_VERSION + "/robot";
-
     public static final String ID = "/{id}";
-
-
+    public static final String SUCCESS = "Success";
 }

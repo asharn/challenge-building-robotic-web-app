@@ -33,7 +33,7 @@ public class RobotController {
     public ResponseEntity<ApiResponse> getRobots() {
         ApiResponse apiResponse =  new ApiResponse();
         apiResponse.setStatusCode(1000);
-        apiResponse.setStatusMessage("Success");
+        apiResponse.setStatusMessage(RestURIConstants.SUCCESS);
         apiResponse.setData(robotService.getRobot());
         return new ResponseEntity<>(apiResponse,HttpStatus.OK);
     }
@@ -42,7 +42,7 @@ public class RobotController {
     public ResponseEntity<ApiResponse> getRobotById(@PathVariable Integer id) {
         ApiResponse apiResponse =  new ApiResponse();
         apiResponse.setStatusCode(1000);
-        apiResponse.setStatusMessage("Success");
+        apiResponse.setStatusMessage(RestURIConstants.SUCCESS);
         apiResponse.setData(robotService.getRobotById(id));
         return new ResponseEntity<>(apiResponse,HttpStatus.OK);
     }
@@ -65,7 +65,7 @@ public class RobotController {
     public ResponseEntity<ApiResponse> deleteRobotById(@PathVariable Integer id) {
         ApiResponse apiResponse =  new ApiResponse();
         apiResponse.setStatusCode(1000);
-        apiResponse.setStatusMessage("Success");
+        apiResponse.setStatusMessage(RestURIConstants.SUCCESS);
         apiResponse.setData(robotService.deleteRobotById(id));
         return new ResponseEntity<>(apiResponse,HttpStatus.OK);
     }

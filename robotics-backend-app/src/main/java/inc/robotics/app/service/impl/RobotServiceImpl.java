@@ -61,10 +61,13 @@ public class RobotServiceImpl implements RobotService {
             apiResponse.setData("Robot color is mandatory.");
         }else if(Objects.isNull(robotRequest.getMass())){
             apiResponse.setData("Robot mass is mandatory.");
+        }else if(Objects.isNull(robotRequest.getState())){
+            apiResponse.setData("Robot state is mandatory.");
         }else{
             RobotDto robotDto = new RobotDto();
             robotDto.setName(robotRequest.getName());
             robotDto.setColor(robotRequest.getColor());
+            robotDto.setState(robotRequest.getState());
             robotDto.setMass(robotRequest.getMass());
             robotDto.setBuildAt(new Date());
             robotDto.setUpdatedAt(new Date());
@@ -94,6 +97,8 @@ public class RobotServiceImpl implements RobotService {
             apiResponse.setData("Robot color is mandatory.");
         }else if(Objects.isNull(robotRequest.getMass())){
             apiResponse.setData("Robot mass is mandatory.");
+        }else if(Objects.isNull(robotRequest.getState())){
+            apiResponse.setData("Robot state is mandatory.");
         }else if(Objects.isNull(robotRequest.getIsLightSensing())){
             apiResponse.setData("Robot lighting sensing is mandatory.");
         }else if(Objects.isNull(robotRequest.getIsSoundSensing())){
@@ -107,18 +112,23 @@ public class RobotServiceImpl implements RobotService {
         }else if(!robotRepository.existsById(robotRequest.getId())) {
             apiResponse.setData("Robot id doesn't found in the system.");
         }else{
-            RobotDto robotDto = new RobotDto();
-            robotDto.setId(robotRequest.getId());
-            robotDto.setName(robotRequest.getName());
-            robotDto.setColor(robotRequest.getColor());
-            robotDto.setMass(robotDto.getMass());
-            robotDto.setUpdatedAt(new Date());
-            robotDto.setIsLightSensing(robotRequest.getIsLightSensing());
-            robotDto.setIsSoundSensing(robotRequest.getIsSoundSensing());
-            robotDto.setIsPressureSensing(robotRequest.getIsPressureSensing());
-            robotDto.setIsMobilityDegreeOfFreedom(robotRequest.getIsMobilityDegreeOfFreedom());
-            robotDto.setIsTemperatureSensing(robotRequest.getIsTemperatureSensing());
-            Robot robot = robotRepository.save(robotMapper.robotDtpToRobot(robotDto));
+            Optional<Robot> robotOptional = robotRepository.findById(robotRequest.getId());
+            Robot robot = null;
+            if(robotOptional.isPresent()){
+                robot = robotOptional.get();
+                robot.setName(robotRequest.getName());
+                robot.setColor(robotRequest.getColor());
+                robot.setMass(robotRequest.getMass());
+                robot.setState(robotRequest.getState());
+                robot.setUpdatedAt(new Date());
+                robot.setIsLightSensing(robotRequest.getIsLightSensing());
+                robot.setIsSoundSensing(robotRequest.getIsSoundSensing());
+                robot.setIsPressureSensing(robotRequest.getIsPressureSensing());
+                robot.setIsMobilityDegreeOfFreedom(robotRequest.getIsMobilityDegreeOfFreedom());
+                robot.setIsTemperatureSensing(robotRequest.getIsTemperatureSensing());
+                robot = robotRepository.save(robot);
+            }
+
             apiResponse.setStatusCode(1000);
             apiResponse.setStatusMessage("Success");
             apiResponse.setData(robotMapper.robotToRobotDto(robot));
@@ -134,6 +144,7 @@ public class RobotServiceImpl implements RobotService {
             Optional<Robot> robotOptional = robotRepository.findById(id);
             if(robotOptional.isPresent()){
                 Robot robot = robotOptional.get();
+                robot.setState("DAMAGED");
                 robotRepository.save(robot);
             }
             return "Robot deleted successfully.";

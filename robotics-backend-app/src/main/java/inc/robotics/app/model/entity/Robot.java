@@ -28,6 +28,7 @@ public class Robot implements Serializable {
     private Date updatedAt;
     private Integer mass;
     private String color;
+    private String state;
     @Column(name = "is_light_sensing", columnDefinition = "TINYINT", nullable = false)
     private Boolean isLightSensing;
     @Column(name = "is_sound_sensing", columnDefinition = "TINYINT", nullable = false)

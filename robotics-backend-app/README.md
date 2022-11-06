@@ -15,6 +15,7 @@ Response:
             "updated_at": "2022-11-05 18:30:00",
             "mass": 20,
             "color": "Red",
+            "state": "DESIGNED",
             "is_light_sensing": false,
             "is_sound_sensing": true,
             "is_temperature_sensing": false,
@@ -28,6 +29,7 @@ Response:
             "updated_at": "2022-11-05 18:30:00",
             "mass": 23,
             "color": "Blue",
+            "state": "DESIGNED",
             "is_light_sensing": false,
             "is_sound_sensing": false,
             "is_temperature_sensing": true,
@@ -41,6 +43,7 @@ Response:
             "updated_at": "2022-11-04 18:30:00",
             "mass": 18,
             "color": "Pink",
+            "state": "DEPLOYED",
             "is_light_sensing": false,
             "is_sound_sensing": false,
             "is_temperature_sensing": true,
@@ -66,6 +69,7 @@ Response:
         "updated_at": "2022-11-05 18:30:00",
         "mass": 23,
         "color": "Blue",
+        "state": "DESIGNED",
         "is_light_sensing": false,
         "is_sound_sensing": false,
         "is_temperature_sensing": true,
@@ -76,126 +80,98 @@ Response:
 }
 ```
 
-3. **GET http://localhost:8080/rest/v1/matches/1** Help to fetch matches whose round will be first.
+3. **POST http://localhost:8080/rest/v1/robot** Help to add new robot in the application.
+   Response:
+```
+{
+    "name": "Sparkles 3",
+    "mass": 24,
+    "color": "Blue",
+    "state": "DESIGNED",
+    "is_light_sensing": false,
+    "is_sound_sensing": false,
+    "is_temperature_sensing": true,
+    "is_pressure_sensing": true,
+    "is_mobility_degree_of_freedom": false
+}
+```
 Response:
 ```
 {
     "status_code": 1000,
     "status_message": "Success",
-    "data": [
+    "data": {
+        "id": 9,
+        "name": "Sparkles 3",
+        "build_at": "2022-11-06 21:04:06",
+        "updated_at": "2022-11-06 21:04:06",
+        "mass": 24,
+        "color": "Blue",
+        "state": "DESIGNED",
+        "is_light_sensing": false,
+        "is_sound_sensing": false,
+        "is_temperature_sensing": true,
+        "is_pressure_sensing": true,
+        "is_mobility_degree_of_freedom": false
+    },
+    "time_stamp": "2022-11-06T21:04:06.045+00:00"
+}
+```
+
+4**PUT http://localhost:8080/rest/v1/robot/4** Help to update existing robot in the application.
+   Request:
+```
+{
         {
-            "id": 1,
-            "tournament_playing_category": {
-                "id": 1,
-                "tournament": {
-                    "id": 1,
-                    "tournament_name": "Inter Team Tournament",
-                    "location": "Noida",
-                    "start_date": "2021-05-09 18:30:00",
-                    "end_date": "2021-05-12 18:30:00",
-                    "number_of_rounds": 6,
-                    "tournament_type": {
-                        "id": 1,
-                        "tournamentType": "Team Up"
-                    },
-                    "surface_type": {
-                        "id": 1,
-                        "surface_type": "Clay"
-                    }
-                },
-                "playing_category": {
-                    "id": 1,
-                    "category_name": "Men’s singles"
-                }
-            },
-            "first_registration_id": {
-                "id": 1,
-                "registration_date": "2021-05-09 18:30:00"
-            },
-            "second_registration_id": {
-                "id": 2,
-                "registration_date": "2021-05-09 18:30:00"
-            },
-            "round": 1
-        },
-        {
-            "id": 3,
-            "tournament_playing_category": {
-                "id": 1,
-                "tournament": {
-                    "id": 1,
-                    "tournament_name": "Inter Team Tournament",
-                    "location": "Noida",
-                    "start_date": "2021-05-09 18:30:00",
-                    "end_date": "2021-05-12 18:30:00",
-                    "number_of_rounds": 6,
-                    "tournament_type": {
-                        "id": 1,
-                        "tournamentType": "Team Up"
-                    },
-                    "surface_type": {
-                        "id": 1,
-                        "surface_type": "Clay"
-                    }
-                },
-                "playing_category": {
-                    "id": 1,
-                    "category_name": "Men’s singles"
-                }
-            },
-            "first_registration_id": {
-                "id": 3,
-                "registration_date": "2021-05-09 18:30:00"
-            },
-            "second_registration_id": {
-                "id": 4,
-                "registration_date": "2021-05-09 18:30:00"
-            },
-            "round": 1
-        },
-        {
-            "id": 5,
-            "tournament_playing_category": {
-                "id": 1,
-                "tournament": {
-                    "id": 1,
-                    "tournament_name": "Inter Team Tournament",
-                    "location": "Noida",
-                    "start_date": "2021-05-09 18:30:00",
-                    "end_date": "2021-05-12 18:30:00",
-                    "number_of_rounds": 6,
-                    "tournament_type": {
-                        "id": 1,
-                        "tournamentType": "Team Up"
-                    },
-                    "surface_type": {
-                        "id": 1,
-                        "surface_type": "Clay"
-                    }
-                },
-                "playing_category": {
-                    "id": 1,
-                    "category_name": "Men’s singles"
-                }
-            },
-            "first_registration_id": {
-                "id": 2,
-                "registration_date": "2021-05-09 18:30:00"
-            },
-            "second_registration_id": {
-                "id": 4,
-                "registration_date": "2021-05-09 18:30:00"
-            },
-            "round": 1
-        }
-    ],
-    "time_stamp": "2021-05-10T13:07:17.690+00:00"
+    "id": 9,
+    "name": "Sparkles 3",
+    "mass": 24,
+    "color": "Blue",
+    "state": "DEPLOYED",
+    "is_light_sensing": true,
+    "is_sound_sensing": false,
+    "is_temperature_sensing": true,
+    "is_pressure_sensing": true,
+    "is_mobility_degree_of_freedom": false
+}
+```
+Response:
+```
+{
+    "status_code": 1000,
+    "status_message": "Success",
+    "data": {
+        "id": 9,
+        "name": "Sparkles 3",
+        "build_at": "2022-11-06 18:30:00",
+        "updated_at": "2022-11-06 21:17:38",
+        "mass": 24,
+        "color": "Blue",
+        "state": "DEPLOYED",
+        "is_light_sensing": true,
+        "is_sound_sensing": false,
+        "is_temperature_sensing": true,
+        "is_pressure_sensing": true,
+        "is_mobility_degree_of_freedom": false
+    },
+    "time_stamp": "2022-11-06T21:17:37.798+00:00"
+}
+```
+
+
+5**GET http://localhost:8080/rest/v1/robot/2** Help to delete single robot from the application.
+   Response:
+```
+{
+    "status_code": 1000,
+    "status_message": "Success",
+    "data": "Robot deleted successfully.",
+    "time_stamp": "2022-11-06T21:22:46.642+00:00"
 }
 ```
 
 ## TestCase coverage report
-Test case coverage report will be found within directory: [test-case-coverage-report](https://github.com/asharn/full-stack-table-tennis-league/blob/main/backend-table-tennis/test-case-coverage-report/index.html)
-![image](https://user-images.githubusercontent.com/5220302/117761586-38c73900-b245-11eb-9de4-20fbc17c5822.png)
+Test case coverage report will be found within directory: [test-case-coverage-report]
 
 
 ## External Resources
@@ -213,7 +189,7 @@ Setting:-
      
 - **To connect to MySql, URL need to have these dependencies**
 ```
-spring.datasource.url=jdbc:mysql://localhost:3306/table_tennis?useSSL=false&tinyInt1isBit=false
+spring.datasource.url=jdbc:mysql://localhost:3306/robotic?useSSL=false&tinyInt1isBit=false
 
 ```
 
