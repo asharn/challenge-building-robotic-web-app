@@ -27,7 +27,7 @@ public class RobotControllerUnitTest {
     private RobotService robotService;
 
     @Test
-    public void getMatches(){
+    public void getRobots(){
         List<RobotDto> robotDtos = getRobotDtos(3);
         when(robotService.getRobot()).thenReturn(robotDtos);
         ResponseEntity<ApiResponse> response = robotController.getRobots();
@@ -36,12 +36,12 @@ public class RobotControllerUnitTest {
     }
 
     @Test
-    public void getRobotByRound(){
+    public void getRobotById(){
         List<RobotDto> robotDtos = getRobotDtos(1);
-        when(robotService.getRobotById(1)).thenReturn(robotDtos);
-        ResponseEntity<ApiResponse> response = robotController.getMatchesByRound(1);
+        when(robotService.getRobotById(1)).thenReturn(robotDtos.get(0));
+        ResponseEntity<ApiResponse> response = robotController.getRobotById(1);
         Assert.assertNotNull(response);
-        Assert.assertSame(robotDtos, Objects.requireNonNull(response.getBody()).getData());
+        Assert.assertSame(robotDtos.get(0), Objects.requireNonNull(response.getBody()).getData());
     }
 
     /**

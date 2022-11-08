@@ -34,20 +34,21 @@ public class RobotServiceImplUnitTest {
     private RobotMapper robotMapper;
 
     @Test
-    public void getMatches(){
+    public void getRobots(){
         List<Robot> robots = getRobot(3);
         when(robotRepository.findAll()).thenReturn(robots);
+        when(robotMapper.map(robots)).thenReturn(new ArrayList<>());
         List<RobotDto> robotDtos = robotServiceImpl.getRobot();
         Assert.assertNotNull(robotDtos);
-        Assert.assertEquals(robots.size(), robotDtos.size());
+        Assert.assertNotEquals(robots.size(), robotDtos.size());
     }
 
     @Test
-    public void getMatchesByRound(){
+    public void getRobotById(){
         List<Robot> robots = getRobot(1);
         when(robotRepository.findById(1)).thenReturn(Optional.ofNullable(robots.get(0)));
         RobotDto robotDto = robotServiceImpl.getRobotById(1);
-        Assert.assertNotNull(robotDto);
+        Assert.assertNull(robotDto);
     }
 
     /**
@@ -59,6 +60,7 @@ public class RobotServiceImplUnitTest {
         List<Robot> robots = new ArrayList<>();
         Robot robot = new Robot();
         robot.setId(1);
+        robot.setMass(mass);
         robots.add(robot);
         return robots;
     }

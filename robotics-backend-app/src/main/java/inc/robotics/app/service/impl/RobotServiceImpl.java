@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Copyright 2022 @asharn
@@ -37,6 +38,7 @@ public class RobotServiceImpl implements RobotService {
         if(!CollectionUtils.isEmpty(robots)){
             robotDtos = robotMapper.map(robots);
         }
+        //.stream().filter(x->"DAMAGED".equalsIgnoreCase(x.getState())).collect(Collectors.toList())
         return robotDtos;
     }
 
